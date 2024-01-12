@@ -39,8 +39,9 @@ class FeeTypeController extends Controller
     public function store(Request $request)
     {
         FeeType::saveData($request);
-        return back()->with('success','Fee Type Created Successfully');
+        return redirect()->route('fee_types.index')->with('success',' Fee Type Created Successfully');
     }
+    
 
     /**
      * Display the specified resource.

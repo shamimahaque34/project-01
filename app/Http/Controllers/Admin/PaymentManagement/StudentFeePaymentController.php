@@ -3,8 +3,14 @@
 namespace App\Http\Controllers\Admin\PaymentManagement;
 
 use App\Http\Controllers\Controller;
+use App\Models\AcademicClass;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\StudentFeePayment;
+use App\Models\AcademicYear;
+use App\Models\Section;
+use App\Models\FeeType;
+
 
 class StudentFeePaymentController extends Controller
 {
@@ -27,7 +33,13 @@ class StudentFeePaymentController extends Controller
      */
     public function create()
     {
-        return  view('backend.payment.student-fee-payment.add');
+        return  view('backend.payment.student-fee-payment.add', [
+            'students'        => Student::all(),
+            'academicYears'   =>AcademicYear::all(),
+            'academicClasses' =>AcademicClass::all(),
+            'sections'        =>Section::all(),
+            'feeTypes'        =>FeeType::all()
+        ]);
     }
 
     /**
@@ -39,7 +51,7 @@ class StudentFeePaymentController extends Controller
     public function store(Request $request)
     {
         StudentFeePayment::saveData($request);
-        return back()->with('success',' Student Fee Payment Created Successfully');
+        return redirect()->route('student_fee_payments.index')->with('success',' Student Fee Payment Created Successfully');
     }
 
     /**
@@ -63,6 +75,11 @@ class StudentFeePaymentController extends Controller
     {
         return view('backend.payment.student-fee-payment.add',[
             'studentFeePayment'=>StudentFeePayment::where('id',$id)->first(),
+            'students'        =>Student::all(),
+            'academicYears'   =>AcademicYear::all(),
+            'academicClasses' =>AcademicClass::all(),
+            'sections'        =>Section::all(),
+            'feeTypes'        =>FeeType::all()
         
             ]);
     }
