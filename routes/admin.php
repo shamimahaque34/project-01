@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\PaymentManagement\FeeTypeController;
+use App\Http\Controllers\Admin\PaymentManagement\StudentFeePaymentController;
 use App\Http\Controllers\Admin\Academic\ClassController;
 use App\Http\Controllers\Admin\Academic\AcademicClassController;
 use App\Http\Controllers\Admin\Academic\SubjectController;
@@ -47,6 +49,7 @@ use App\Http\Controllers\Admin\UserManagement\UserDesignationController;
 use App\Http\Controllers\Admin\UserManagement\UserManagementStudentController;
 use App\Http\Controllers\Admin\UserManagement\UserManagementTeacherController;
 use App\Http\Controllers\Admin\UserManagement\UserManagementSubmittedCertificateController;
+use App\Models\StudentFeePayment;
 
 Route::middleware([
     'auth:sanctum',
@@ -207,5 +210,10 @@ Route::middleware([
             'user_submitted_certificate',
             UserManagementSubmittedCertificateController::class
         );
+
+        //Payment Management
+        Route::resource('fee_types', FeeTypeController::class);
+        Route::resource('student_fee_payments', StudentFeePaymentController::class);
+
     });
 });

@@ -246,6 +246,24 @@
                 </div>
             </li>
 
+            <li class="side-nav-item {{ request()->is('admin/fee_types*') ? 'menuitem-active' : '' }} {{ request()->is('admin/student_fee_payments*') ? 'menuitem-active' : '' }}">
+                <a data-bs-toggle="collapse" href="#payment_management" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                    <i class="mdi-blur-off"></i>
+                    <span>Payment Management </span>
+                </a>
+                <div class="collapse" id="payment_management">
+                    <ul class="side-nav-second-level">
+                        <li class="{{ request()->is('admin/fee_types*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('fee_types.index') }}" class="{{ request()->is('admin/fee_types') || request()->is('admin/fee_types/*') ? 'active' : '' }}">Fee Type</a>
+                        </li>
+                        <li class="{{ request()->is('admin/student_fee_payments*') ? 'menuitem-active' : '' }}">
+                            <a href="{{ route('student_fee_payments.index') }}" class="{{ request()->is('admin/student_fee_payments') || request()->is('admin/student_fee_payments/*') ? 'active' : '' }}">Student Fee Payment</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </li>
+
             <li class="side-nav-item {{ request()->is('setting') ? 'menuitem-active' : '' }}">
                 <a href="{{ route('setting.create') }}" class="side-nav-link">
                     <i class="dripicons-gear"></i>
