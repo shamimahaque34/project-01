@@ -32,13 +32,42 @@ class StudentFeePayment extends Model
         
         self::$studentFeePayment = new StudentFeePayment();
          
-        self::$studentFeePayment ->user_id    = $request->teacher_id;
-        self::$studentFeePayment->fee_type    =$request->fee_type;
-        self::$studentFeePayment->slug        =str_replace(' ','-',$request->fee_type);
-        self::$studentFeePayment->note        =$request->note ;
-        self::$studentFeePayment->status      =$request->status;
+        self::$studentFeePayment ->user_id           = $request->user_id;
+        self::$studentFeePayment ->student_id        = $request->student_id;
+        self::$studentFeePayment ->academic_year_id  = $request->academic_year_id;
+        self::$studentFeePayment ->academic_class_id = $request->academic_class_id;
+        self::$studentFeePayment ->section_id        = $request->section_id;
+        self::$studentFeePayment->fee_type_id        = $request->fee_type_id;
+        self::$studentFeePayment->month              = $request->month;
+        self::$studentFeePayment->amount             = $request->amount;
+        self::$studentFeePayment->due                = $request->due ;
+        self::$studentFeePayment->status             = $request->status;
+        self::$studentFeePayment->payment_method     = $request->txt_id;
+        self::$studentFeePayment->txt_id             = $request->status;
         self::$studentFeePayment->save();
         
+    }
+
+    public static function updateData($request,$id)
+    {   
+        self::$studentFeePayment = StudentFeePayment::findOrFail($id);
+
+        self::$studentFeePayment ->user_id           = $request->user_id;
+        self::$studentFeePayment ->student_id        = $request->student_id;
+        self::$studentFeePayment ->academic_year_id  = $request->academic_year_id;
+        self::$studentFeePayment ->academic_class_id = $request->academic_class_id;
+        self::$studentFeePayment ->section_id        = $request->section_id;
+        self::$studentFeePayment->fee_type_id        = $request->fee_type_id;
+        self::$studentFeePayment->month              = $request->month;
+        self::$studentFeePayment->amount             = $request->amount;
+        self::$studentFeePayment->due                = $request->due ;
+        self::$studentFeePayment->status             = $request->status;
+        self::$studentFeePayment->payment_method     = $request->txt_id;
+        self::$studentFeePayment->txt_id             = $request->status;
+        self::$studentFeePayment->save();
+        
+
+       
     }
 
     protected $searchableFields = ['*'];
